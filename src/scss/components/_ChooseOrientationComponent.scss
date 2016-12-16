@@ -1,0 +1,41 @@
+.flexCenter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.ChooseOrientationComponent{
+  display: flex;
+  justify-content: space-around;
+  padding-top: 10px;
+
+}
+
+.OrientationBox{
+  @extend .flexCenter;
+  flex-direction: column;
+
+  p{
+    padding-top: 10px;
+  }
+}
+
+.layoutIcon{
+  height: 55px;
+  @extend .flexCenter;
+}
+
+.horizontalOption{
+  width: 45px;
+  height: 30px;
+  background: url('img/check_icon.png') no-repeat center #56c47a;
+  @include border-radius(5px);
+}
+
+.verticalOption{
+  width: 30px;
+  height: 45px;
+  background-color: #dadada;
+  @include border-radius(5px);
+}

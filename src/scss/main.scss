@@ -1,0 +1,14 @@
+@import "./utils/_normalize";
+@import "./utils/_reset";
+@import "./utils/_mixins";
+
+@import "./_settings";
+
+@import "./core/_layout";
+
+@import "./components/_RootView.scss";
+
+@import "./components/_OptionBox.scss";
+@import "./components/_OptionHeader.scss";
+@import "./components/_OptionElements.scss";
+@import "./components/_ChooseOrientationComponent.scss";

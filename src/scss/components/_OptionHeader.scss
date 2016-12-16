@@ -1,0 +1,19 @@
+.optionHeader{
+  display: flex;
+
+  .topHeader{
+    flex:1;
+    min-width: 192px;
+    font-size: 18px;
+    font-weight: normal;
+    color:$defaultMenuHeadlineColor;
+  }
+
+  img{
+    flex: 1;
+    flex-direction: row-reverse;
+    width: 8px;
+    height: 8px;
+    max-width: 8px;
+  }
+}
