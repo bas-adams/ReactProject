@@ -1,0 +1,46 @@
+.FilterValueWithCheckbox{
+  display: flex;
+  padding-top: 10px;
+}
+.flex-item-4{
+  flex:1;
+  color: $defaultFilterTextColor;
+}
+.flex-item-4 label{
+  flex:1;
+
+  color: $defaultFilterTextColor;
+}
+
+.flex-item-6{
+  text-align: right;
+  color: $defaultFilterAmountColor;
+}
+
+.flex-item-4 input[type="checkbox"] + label::before{
+  content: '\a0';
+  display: inline-block;
+  vertical-align: .2rem;
+  width:0.8rem;
+  height:0.8rem;
+  background: #fff;
+  border: 1px solid #c9c9c9;
+  margin-right:.2rem;
+  border-radius: .2rem;
+  text-indent:.15rem;
+  line-height:.65;
+}
+.flex-item-4 input[type="checkbox"]:checked + label::before{
+  content:'\2713';
+  background-color:#56c47a;
+  border: 1px solid #56c47a;
+  color: #fff;
+
+}
+.flex-item-4 input[type="checkbox"]{
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+

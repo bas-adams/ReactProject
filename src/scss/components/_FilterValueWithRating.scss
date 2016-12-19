@@ -1,0 +1,24 @@
+.FilterValueWithRating{
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  .raitingRadio{
+    max-width: 12px;
+  }
+
+  .ratingStar{
+    flex:10;
+    padding-left:10px;
+
+  }
+
+  .ratingNumber{
+    flex:3;
+    text-align: right;
+    color: $defaultFilterAmountColor;
+  }
+}
+
+

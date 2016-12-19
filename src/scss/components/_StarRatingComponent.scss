@@ -1,0 +1,12 @@
+.StarRatingComponent{
+  flex:1;
+  text-align: left;
+
+  ul li{
+    display: inline;
+  }
+
+  li{
+    padding-right: 0.4rem;
+  }
+}

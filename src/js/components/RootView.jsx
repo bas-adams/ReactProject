@@ -1,78 +1,143 @@
 import React from "react";
 
 import ChooseOrientationComponent from './ChooseOrientationComponent.jsx';
-import OptionBox from './OptionBox.jsx';
-import OptionElements from './OptionElements.jsx';
+import FilterBox from './FilterBox.jsx';
+import FilterValueWithCheckbox from './FilterValueWithCheckbox.jsx';
+import FilterValueWithRating from './FilterValueWithRating.jsx';
 
-import Comments from './Comments.jsx';
 import OptionList from './OptionList.jsx';
 
-import OptionListChildren from './OptionListChildren.jsx';
-import ItemRenderer from './ItemRenderer.jsx';
+import StarRatingComponent from './StarRatingComponent.jsx';
+
+import OptionListElement from './OptionListElement.jsx';
+
 
 export default class RootView extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            items: ["item1", "item2", "item3", "item4"],
-
-            isAbusive: false,
-
-            headerIconUrl: "img/close_icon.png",
-            headerIconAlt: "close",
-
-            note: "90x50mm",
-            amount: "112"
+            items: ["item1", "item2", "item3", "item4", "item5"],
+            isAbusive: false
 
         }
-
     }
 
+    selectItem(idx) {
+        this.setState({selectedItem: idx});
+    }
+
+
 	render() {
+
+
+        var fillStar = 4,
+            notFillStar = 1,
+
+        ratingFilters =[
+            {fillStar: 4, notFillStar: 1 , amount: 83},
+            {fillStar: 3, notFillStar: 2 , amount: 230},
+            {fillStar: 2, notFillStar: 3 , amount: 18},
+            {fillStar: 1, notFillStar: 4 , amount: 66}
+        ],
+
+        sizeFilters =[
+            {name: "80x66mm", amount: 112},
+            {name: "40x56mm", amount: 56}
+            ],
+
+        favoriteFilter = [{name: "Only Favorites", amount: "22"}],
+
+        industryFilters =[
+            {name: "All", amount: 840},
+            {name: "Automotive", amount: 112},
+            {name: "Fashion", amount: 83},
+            {name: "Law", amount: 230},
+            {name: "IT", amount: 18},
+            {name: "Sport", amount: 66},
+            {name: "Art", amount: 20}
+            ],
+
+        products = [
+            {fillStar: 3, notFillStar: 2, productName: "Automobil", productDesc: "90x50mm"},
+            {fillStar: 1, notFillStar: 4, productName: "Killum", productDesc: "90x50mm"},
+            {fillStar: 4, notFillStar: 1, productName: "Severamagenition", productDesc: "85x55mm"},
+            {fillStar: 5, notFillStar: 0, productName: "Abrahamoska", productDesc: "90x50mm"},
+            {fillStar: 3, notFillStar: 2, productName: "Fifth", productDesc: "90x50mm"},
+            {fillStar: 2, notFillStar: 3, productName: "Jumper", productDesc: "85x55mm"}
+        ];
+
 		return (
 			<div className="RootView">
 				<div className="flex-container">
                     <asside className="optionMenu">
                         <h3>Narrow results</h3>
 
-                        <OptionBox headerText="Orientation" headerIconUrl={this.state.headerIconUrl} headerIconAlt={this.state.headerIconAlt}>
-                        <ChooseOrientationComponent/>
-                        </OptionBox>
+                        <FilterBox headerText="Orientation">
+                            <ChooseOrientationComponent/>
+                        </FilterBox>
 
-                        <OptionBox headerText="Size" headerIconUrl={this.state.headerIconUrl} headerIconAlt={this.state.headerIconAlt}>
-                            <OptionElements note={this.state.note} amount={this.state.amount} />
-                        </OptionBox>
+                        <FilterBox headerText="Size">
+                            {sizeFilters.map((sizeFilters, idx) => {
+                                return <FilterValueWithCheckbox key={idx + "opt"} name={sizeFilters.name} amount={sizeFilters.amount} />
+                            }) }
+                        </FilterBox>
 
-                        <OptionBox headerText="Customer Rating" headerIconUrl={this.state.headerIconUrl} headerIconAlt={this.state.headerIconAlt}>
-                            <OptionElements note="85x55mm" amount="112" />
-                            <OptionElements note="185x155mm" amount="167" />
-                        </OptionBox>
+                        <FilterBox headerText="Customer Rating">
+                            <FilterValueWithCheckbox name="85x55mm" amount="112" />
+                            <FilterValueWithCheckbox name="185x155mm" amount="167" />
+                        </FilterBox>
 
-                        <OptionBox headerText="Favorite" headerIconUrl={this.state.headerIconUrl} headerIconAlt={this.state.headerIconAlt}>
-                            <OptionElements note="Only favorites" amount="22" />
-                        </OptionBox>
+                        <FilterBox headerText="Customer Rating">
+                            <p>Header</p>
+                            {ratingFilters.map((filterOption, idx) => {
+                                return <FilterValueWithRating key={idx + "opt"} fillStar={filterOption.fillStar}  notFillStar={filterOption.notFillStar} amount={filterOption.amount} />
+                            }) }
 
-                        <OptionBox headerText="Industry" headerIconUrl={this.state.headerIconUrl} headerIconAlt={this.state.headerIconAlt}>
-                            <OptionElements note="All" amount="840" />
-                            <OptionElements note="Automotive" amount="112" />
-                            <OptionElements note="Fashion" amount="83" />
-                            <OptionElements note="Law" amount="230" />
-                            <OptionElements note="IT" amount="18" />
-                            <OptionElements note="Sport" amount="66" />
-                            <OptionElements note="Art" amount="20" />
-                        </OptionBox>
+                        </FilterBox>
+
+                        <FilterBox headerText="Favorite">
+                            {favoriteFilter.map((filterOption, idx) => {
+                                return <FilterValueWithCheckbox key={idx + "opt"} name={filterOption.name} amount={filterOption.amount} />
+                            }) }
+                        </FilterBox>
+
+                        <FilterBox headerText="Industry">
+                            {industryFilters.map((filterOption, idx) => {
+                                return <FilterValueWithCheckbox key={idx + "opt"} name={filterOption.name} amount={filterOption.amount} />
+                            }) }
+                        </FilterBox>
 
                     </asside>
-                    <div className="flex-item-3">
-                        <Comments author="Anne Droid" bodyText="Something stranege" />
-                        <OptionListChildren>
-                            <ItemRenderer name="one" />
-                            <ItemRenderer name="two" />
-                            <ItemRenderer name="three" />
-                            <ItemRenderer name="four" />
-                        </OptionListChildren>
-                    </div>
+                    <section className="flex-item-3">
+
+                        <StarRatingComponent fillStar={fillStar}  notFillStar={notFillStar} />
+
+
+                        <OptionList fillStar={fillStar}  notFillStar={notFillStar} productName="AutomobilTest" productDesc="90x50mm" >
+
+                        </OptionList>
+                        <div>
+                            <ul>
+                                {products.map((product, idx) => {
+                                    return <li className="productListItem">
+                                        <OptionListElement key={idx + "opt"}
+                                                                 fillStar={product.fillStar}
+                                                                 notFillStar={product.notFillStar}
+                                                                 productName={product.productName}
+                                                                 productDesc={product.productDescs}  /></li>
+                                }) }
+
+
+
+                            </ul>
+                        </div>
+
+
+
+
+
+                    </section>
 
                 </div>
 			</div>

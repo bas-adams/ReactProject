@@ -8,7 +8,13 @@
 
 @import "./components/_RootView.scss";
 
-@import "./components/_OptionBox.scss";
-@import "./components/_OptionHeader.scss";
-@import "./components/_OptionElements.scss";
+@import "./components/_FilterBox";
+@import "./components/_FilterValueWithCheckbox";
+@import "./components/FilterValueWithRating";
 @import "./components/_ChooseOrientationComponent.scss";
+
+@import "./components/_OptionList.scss";
+
+@import "./components/_StarRatingComponent.scss";
+
+
