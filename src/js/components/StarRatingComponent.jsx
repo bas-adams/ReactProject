@@ -1,28 +1,33 @@
-import React from "react";
+import React from 'react';
 
 export default class StarRatingComponent extends React.Component{
 
+
+    howManyStar(maxStars, yellowstars){
+
+        var stars = [],
+            color;
+        for(var i = 1; i <= maxStars; i++ ){
+            if( i <= yellowstars ){
+                stars.push(i);
+            }
+        }
+        return stars;
+    }
+
+
     render(){
 
-        var fillStarTemp = [],
-            notFillStarTemp = [];
+        var maxStars = this.props.maxNumberOfStars;
+        var yellowstars = this.props.checkedStars;
 
-        for (var i = 0; i < this.props.fillStar; i++) {
-            fillStarTemp.push(i);
-        }
-
-        for (var i = 0; i < this.props.notFillStar; i++) {
-            notFillStarTemp.push(i);
-        }
-
+       console.log('maxNumberOfStars: ' + maxStars);
+       console.log('checkedStars: ' + yellowstars);
         return(
             <div className="StarRatingComponent">
                 <ul>
-                    {fillStarTemp.map((item, idx) => {
-                        return <li key={"opt-" + idx}><img src="img/start_filled.png" alt=""/></li>
-                    })}
-                    {notFillStarTemp.map((item, idx) => {
-                        return <li key={"opt-" + idx}><img src="img/start_blank.png" alt=""/></li>
+                    {this.howManyStar(maxStars, yellowstars).map((elem, idx) => {
+                        return <li key={idx + "opt"}><i className="icon icon-star starIcon"></i></li>
                     })}
                 </ul>
             </div>

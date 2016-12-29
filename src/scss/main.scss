@@ -1,8 +1,11 @@
-@import "./utils/_normalize";
+/*@import "./utils/_normalize";*/
 @import "./utils/_reset";
 @import "./utils/_mixins";
 
 @import "./_settings";
+@import "./_icons";
+
+
 
 @import "./core/_layout";
 
@@ -10,10 +13,10 @@
 
 @import "./components/_FilterBox";
 @import "./components/_FilterValueWithCheckbox";
-@import "./components/FilterValueWithRating";
+@import "./components/_FilterValueWithRating";
 @import "./components/_ChooseOrientationComponent.scss";
 
-@import "./components/_OptionList.scss";
+@import "./components/_ProductListElement.scss";
 
 @import "./components/_StarRatingComponent.scss";
 

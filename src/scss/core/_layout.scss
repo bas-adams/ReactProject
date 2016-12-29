@@ -24,6 +24,21 @@ body {
   padding-left: 55px;
   border-left: 1px solid #ebebeb;
 }
+.productList{
+  display: flex;
+  color: $defaultFontColor;
+}
 
+.productListItem{
+  width: 20%;
+  margin: 10px;
+  text-align: center;
+}
 
-
+.productListItem:hover{
+  box-shadow: 0 0 0 .2rem #56c47a;
+  border-radius: 0.3rem;
+}
+.wrap{
+  flex-wrap: wrap;
+}

@@ -1,15 +1,13 @@
 import React from "react";
 
-import ChooseOrientationComponent from './ChooseOrientationComponent.jsx';
-import FilterBox from './FilterBox.jsx';
-import FilterValueWithCheckbox from './FilterValueWithCheckbox.jsx';
-import FilterValueWithRating from './FilterValueWithRating.jsx';
+import ChooseOrientationComponent from './Filters/ChooseOrientationComponent.jsx';
+import FilterBox from './Filters/FilterBox.jsx';
+import FilterValueWithCheckbox from './Filters/FilterValueWithCheckbox.jsx';
+import FilterValueWithRating from './Filters/FilterValueWithRating.jsx';
 
-import OptionList from './OptionList.jsx';
 
-import StarRatingComponent from './StarRatingComponent.jsx';
 
-import OptionListElement from './OptionListElement.jsx';
+import ProductList from './ProductList.jsx';
 
 
 export default class RootView extends React.Component {
@@ -17,30 +15,28 @@ export default class RootView extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            items: ["item1", "item2", "item3", "item4", "item5"],
-            isAbusive: false
-
+            items: ["one", "two", "three", "four", "five"],
+            selected: "",
+            isSelected : true
         }
     }
 
-    selectItem(idx) {
-        this.setState({selectedItem: idx});
+    selectItem() {
+        console.log('I am here buuu');
     }
 
 
 	render() {
 
 
+
         var fillStar = 4,
             notFillStar = 1,
 
         ratingFilters =[
-            {fillStar: 4, notFillStar: 1 , amount: 83},
-            {fillStar: 3, notFillStar: 2 , amount: 230},
-            {fillStar: 2, notFillStar: 3 , amount: 18},
-            {fillStar: 1, notFillStar: 4 , amount: 66}
-        ],
-
+            {maxStars: 6, maxFill: 4 , amount: 83},
+            {maxStars: 5, maxFill: 2 , amount: 230}
+             ],
         sizeFilters =[
             {name: "80x66mm", amount: 112},
             {name: "40x56mm", amount: 56}
@@ -59,12 +55,15 @@ export default class RootView extends React.Component {
             ],
 
         products = [
-            {fillStar: 3, notFillStar: 2, productName: "Automobil", productDesc: "90x50mm"},
-            {fillStar: 1, notFillStar: 4, productName: "Killum", productDesc: "90x50mm"},
-            {fillStar: 4, notFillStar: 1, productName: "Severamagenition", productDesc: "85x55mm"},
-            {fillStar: 5, notFillStar: 0, productName: "Abrahamoska", productDesc: "90x50mm"},
-            {fillStar: 3, notFillStar: 2, productName: "Fifth", productDesc: "90x50mm"},
-            {fillStar: 2, notFillStar: 3, productName: "Jumper", productDesc: "85x55mm"}
+            {maxStars: 3, maxFill: 2, productName: "Automobil", productDesc: "90x50mm"},
+            {maxStars: 1, maxFill: 4, productName: "Killum", productDesc: "90x50mm"},
+            {maxStars: 4, maxFill: 1, productName: "Severamagenition", productDesc: "85x55mm"},
+            {maxStars: 5, maxFill: 0, productName: "Abrahamoska", productDesc: "90x50mm"},
+            {maxStars: 3, maxFill: 2, productName: "Fifth", productDesc: "90x50mm"},
+            {maxStars: 4, maxFill: 1, productName: "Severamagenition", productDesc: "85x55mm"},
+            {maxStars: 5, maxFill: 0, productName: "Abrahamoska", productDesc: "90x50mm"},
+            {maxStars: 3, maxFill: 2, productName: "Fifth", productDesc: "90x50mm"},
+            {maxStars: 2, maxFill: 3, productName: "Jumper", productDesc: "85x55mm"}
         ];
 
 		return (
@@ -73,36 +72,38 @@ export default class RootView extends React.Component {
                     <asside className="optionMenu">
                         <h3>Narrow results</h3>
 
-                        <FilterBox headerText="Orientation">
-                            <ChooseOrientationComponent/>
+
+                        <FilterBox headerText="Orientation"  onClickHandler={this.selectItem.bind(this)} >
+                            <ChooseOrientationComponent />
                         </FilterBox>
 
-                        <FilterBox headerText="Size">
+                        <FilterBox headerText="Size" onClickHandler={this.selectItem.bind(this)}>
                             {sizeFilters.map((sizeFilters, idx) => {
                                 return <FilterValueWithCheckbox key={idx + "opt"} name={sizeFilters.name} amount={sizeFilters.amount} />
                             }) }
                         </FilterBox>
 
-                        <FilterBox headerText="Customer Rating">
+                        <FilterBox headerText="Customer Rating" onClickHandler={this.selectItem.bind(this)} >
                             <FilterValueWithCheckbox name="85x55mm" amount="112" />
                             <FilterValueWithCheckbox name="185x155mm" amount="167" />
+
                         </FilterBox>
 
-                        <FilterBox headerText="Customer Rating">
+                        <FilterBox headerText="Customer Rating" onClickHandler={this.selectItem.bind(this)} >
                             <p>Header</p>
                             {ratingFilters.map((filterOption, idx) => {
-                                return <FilterValueWithRating key={idx + "opt"} fillStar={filterOption.fillStar}  notFillStar={filterOption.notFillStar} amount={filterOption.amount} />
+                                return <FilterValueWithRating key={idx + "opt"} maxNumberOfStars={filterOption.maxStars}  checkedStars={filterOption.maxFill} amount={filterOption.amount}/>
                             }) }
 
                         </FilterBox>
 
-                        <FilterBox headerText="Favorite">
+                        <FilterBox headerText="Favorite" onClickHandler={this.selectItem.bind(this)} >
                             {favoriteFilter.map((filterOption, idx) => {
                                 return <FilterValueWithCheckbox key={idx + "opt"} name={filterOption.name} amount={filterOption.amount} />
                             }) }
                         </FilterBox>
 
-                        <FilterBox headerText="Industry">
+                        <FilterBox headerText="Industry" onClickHandler={this.selectItem.bind(this)}>
                             {industryFilters.map((filterOption, idx) => {
                                 return <FilterValueWithCheckbox key={idx + "opt"} name={filterOption.name} amount={filterOption.amount} />
                             }) }
@@ -110,32 +111,9 @@ export default class RootView extends React.Component {
 
                     </asside>
                     <section className="flex-item-3">
-
-                        <StarRatingComponent fillStar={fillStar}  notFillStar={notFillStar} />
-
-
-                        <OptionList fillStar={fillStar}  notFillStar={notFillStar} productName="AutomobilTest" productDesc="90x50mm" >
-
-                        </OptionList>
-                        <div>
-                            <ul>
-                                {products.map((product, idx) => {
-                                    return <li className="productListItem">
-                                        <OptionListElement key={idx + "opt"}
-                                                                 fillStar={product.fillStar}
-                                                                 notFillStar={product.notFillStar}
-                                                                 productName={product.productName}
-                                                                 productDesc={product.productDescs}  /></li>
-                                }) }
-
-
-
-                            </ul>
-                        </div>
-
-
-
-
+                        {products.map(( productList, idx) => {
+                            return <ProductList key={idx + "opt"} maxNumberOfStars={productList.maxStars} checkedStars={productList.maxFill} />
+                        }) }
 
                     </section>
 
