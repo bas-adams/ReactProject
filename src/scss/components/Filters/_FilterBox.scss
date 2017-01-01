@@ -1,0 +1,26 @@
+.FilterBox {
+  color: $defaultFilterTextColor;
+  min-width: 200px;
+  padding-bottom: 40px;
+
+
+  .optionHeader{
+    display: flex;
+
+    .topHeader{
+      flex:1;
+      min-width: 192px;
+      font-size: 18px;
+      font-weight: normal;
+      color:$defaultFilterHeadlineColor;
+    }
+
+    .iconClose{
+      font-size: 12px;
+      color: #5cc67f;
+      cursor: pointer;
+    }
+
+
+  }
+}

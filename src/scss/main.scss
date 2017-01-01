@@ -11,13 +11,17 @@
 
 @import "./components/_RootView.scss";
 
-@import "./components/_FilterBox";
-@import "./components/_FilterValueWithCheckbox";
-@import "./components/_FilterValueWithRating";
-@import "./components/_ChooseOrientationComponent.scss";
+@import "components/Filters/_FilterBox";
+@import "components/Filters/_FilterValueWithCheckbox";
+@import "components/Filters/_FilterValueWithRating";
+@import "components/Filters/_ChooseOrientationComponent";
+@import "components/Filters/_FilterColor";
 
-@import "./components/_ProductListElement.scss";
+@import "components/Products/_ProductListElement";
 
-@import "./components/_StarRatingComponent.scss";
+@import "components/General/_StarRatingComponent";
+@import "components/General/_Heart";
+@import "components/Products/_ProductCard";
+
 
 

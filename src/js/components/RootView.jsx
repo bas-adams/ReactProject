@@ -4,10 +4,10 @@ import ChooseOrientationComponent from './Filters/ChooseOrientationComponent.jsx
 import FilterBox from './Filters/FilterBox.jsx';
 import FilterValueWithCheckbox from './Filters/FilterValueWithCheckbox.jsx';
 import FilterValueWithRating from './Filters/FilterValueWithRating.jsx';
+import Heart from './General/Heart.jsx';
+import FilterColor from './Filters/FilterColor.jsx';
 
-
-
-import ProductList from './ProductList.jsx';
+import ProductCart from './Products/ProductCart.jsx';
 
 
 export default class RootView extends React.Component {
@@ -15,14 +15,23 @@ export default class RootView extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            items: ["one", "two", "three", "four", "five"],
-            selected: "",
-            isSelected : true
+            heartSelected: 'false'
         }
     }
 
     selectItem() {
         console.log('I am here buuu');
+    }
+
+    toggleIsSelected() {
+
+        console.log('toggle 1 ' + this.state.heartSelected);
+
+        var col;
+        var changeState = (this.state.heartSelected === 'true'? (col = 'fill', this.state.heartSelected = 'false') : (col = 'empty', this.state.heartSelected = 'true') );
+        this.setState({heartSelected: changeState});
+        console.log('col ' + col);
+        console.log('inside ' + this.setState({heartSelected: col}) )
     }
 
 
@@ -52,19 +61,9 @@ export default class RootView extends React.Component {
             {name: "IT", amount: 18},
             {name: "Sport", amount: 66},
             {name: "Art", amount: 20}
-            ],
+            ];
 
-        products = [
-            {maxStars: 3, maxFill: 2, productName: "Automobil", productDesc: "90x50mm"},
-            {maxStars: 1, maxFill: 4, productName: "Killum", productDesc: "90x50mm"},
-            {maxStars: 4, maxFill: 1, productName: "Severamagenition", productDesc: "85x55mm"},
-            {maxStars: 5, maxFill: 0, productName: "Abrahamoska", productDesc: "90x50mm"},
-            {maxStars: 3, maxFill: 2, productName: "Fifth", productDesc: "90x50mm"},
-            {maxStars: 4, maxFill: 1, productName: "Severamagenition", productDesc: "85x55mm"},
-            {maxStars: 5, maxFill: 0, productName: "Abrahamoska", productDesc: "90x50mm"},
-            {maxStars: 3, maxFill: 2, productName: "Fifth", productDesc: "90x50mm"},
-            {maxStars: 2, maxFill: 3, productName: "Jumper", productDesc: "85x55mm"}
-        ];
+
 
 		return (
 			<div className="RootView">
@@ -83,14 +82,9 @@ export default class RootView extends React.Component {
                             }) }
                         </FilterBox>
 
-                        <FilterBox headerText="Customer Rating" onClickHandler={this.selectItem.bind(this)} >
-                            <FilterValueWithCheckbox name="85x55mm" amount="112" />
-                            <FilterValueWithCheckbox name="185x155mm" amount="167" />
-
-                        </FilterBox>
 
                         <FilterBox headerText="Customer Rating" onClickHandler={this.selectItem.bind(this)} >
-                            <p>Header</p>
+                            <p className="subHeader">At least</p>
                             {ratingFilters.map((filterOption, idx) => {
                                 return <FilterValueWithRating key={idx + "opt"} maxNumberOfStars={filterOption.maxStars}  checkedStars={filterOption.maxFill} amount={filterOption.amount}/>
                             }) }
@@ -109,12 +103,14 @@ export default class RootView extends React.Component {
                             }) }
                         </FilterBox>
 
+                        <FilterBox headerText="Color" onClickHandler={this.selectItem.bind(this)}>
+                            <p className="subHeader">Choose color(s)</p>
+                            <FilterColor />
+                        </FilterBox>
+
                     </asside>
                     <section className="flex-item-3">
-                        {products.map(( productList, idx) => {
-                            return <ProductList key={idx + "opt"} maxNumberOfStars={productList.maxStars} checkedStars={productList.maxFill} />
-                        }) }
-
+                        <ProductCart  />
                     </section>
 
                 </div>

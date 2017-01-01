@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StarRatingComponent from '../StarRatingComponent.jsx';
+import StarRatingComponent from '../General/StarRatingComponent.jsx';
 
 export default class FilterValueWithRating extends React.Component{
     render(){

@@ -4,7 +4,7 @@ export default class FilterValueWithCheckbox extends React.Component{
     render(){
         return(
             <div className="FilterValueWithCheckbox">
-                <div className="elemName">
+                <div className="elementName">
                     <input type="checkbox" /><label>{this.props.name}</label>
                 </div>
 

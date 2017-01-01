@@ -1,0 +1,44 @@
+/*Product List Element*/
+.ProductListElement{
+  display: inline-flex;
+  padding: 0 2rem 1rem;
+  width: 20%;
+
+  a{
+    text-decoration: none;
+  }
+
+  .productListItem{
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .productListItem:hover{
+    box-shadow: 0 0 0 2px #56c47a;
+    border-radius: 5px;
+  }
+
+  h4{
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .itemText{
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+  }
+
+  .productListIcons{
+    display: flex;
+    flex-direction: row;
+    padding-top: 4rem;
+  }
+
+}
+
+
+

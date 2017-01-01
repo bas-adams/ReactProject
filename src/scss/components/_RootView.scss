@@ -1,4 +1,10 @@
 .RootView {
   color: $defaultFontColor;
   padding: 20px 20px 0;
+
+  .ratingHeader{
+    font-size: 14px;
+    color: $defaultFilterTextColor;
+    padding: 6px 0;
+  }
 }
